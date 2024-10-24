@@ -19,8 +19,8 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<HomePage />} />
-        <Route path="/people/:chosenId?" element={<PeoplePage />}></Route>
-        <Route path="/home" element={<Navigate to="/" />} />
+        <Route path="/people/:chosenId?" element={<PeoplePage />} />
+        <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
