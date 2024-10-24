@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { Person } from '../../types';
-import { makeLinkWithPerson } from '../../Utils/MakeLinkWithPerson';
+import { PersonLink } from '../PersonLink/PersonLink';
 
 interface Props {
   person: Person;
@@ -17,13 +17,13 @@ export const PersonBody: React.FC<Props> = ({ person, chosenId }) => {
       data-cy="person"
       className={cn({ 'has-background-warning': chosenId === slug })}
     >
-      <td>{makeLinkWithPerson(person)}</td>
+      <td>{<PersonLink person={person} />}</td>
 
       <td>{sex}</td>
       <td>{born}</td>
       <td>{died}</td>
-      <td>{mother ? makeLinkWithPerson(mother) : motherName || '-'}</td>
-      <td>{father ? makeLinkWithPerson(father) : fatherName || '-'}</td>
+      <td>{mother ? <PersonLink person={mother} /> : motherName || '-'}</td>
+      <td>{father ? <PersonLink person={father} /> : fatherName || '-'}</td>
     </tr>
   );
 };
