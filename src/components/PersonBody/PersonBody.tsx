@@ -1,8 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { Person } from '../../types';
-import { makeLinkWithName } from '../../Utils/MakeLinkWithName';
-import { Link } from 'react-router-dom';
+import { makeLinkWithPerson } from '../../Utils/MakeLinkWithPerson';
 
 interface Props {
   person: Person;
@@ -10,37 +9,21 @@ interface Props {
 }
 
 export const PersonBody: React.FC<Props> = ({ person, chosenId }) => {
-  const {
-    sex,
-    slug,
-    name,
-    born,
-    died,
-    motherName,
-    fatherName,
-    mother,
-    father,
-  } = person;
+  const { sex, slug, born, died, motherName, fatherName, mother, father } =
+    person;
 
   return (
     <tr
       data-cy="person"
       className={cn({ 'has-background-warning': chosenId === slug })}
     >
-      <td>
-        <Link
-          className={cn({ 'has-text-danger': sex === 'f' })}
-          to={`/people/${slug}`}
-        >
-          {name}
-        </Link>
-      </td>
+      <td>{makeLinkWithPerson(person)}</td>
 
       <td>{sex}</td>
       <td>{born}</td>
       <td>{died}</td>
-      <td>{!!mother ? makeLinkWithName(mother) : motherName || '-'}</td>
-      <td>{!!father ? makeLinkWithName(father) : fatherName || '-'}</td>
+      <td>{mother ? makeLinkWithPerson(mother) : motherName || '-'}</td>
+      <td>{father ? makeLinkWithPerson(father) : fatherName || '-'}</td>
     </tr>
   );
 };
